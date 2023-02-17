@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { useInputChange } from "./functions/hooks/useInputChange";
+import "./App.css";
+const debounce = (callback, timeout) => {
+  let timer;
+  return (...args) => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => callback(...args), timeout);
+  };
+};
+
 
 function App() {
+  const [inputValue, setInputValue] = useState("");
+  const inputHandler = useInputChange('')
+  const handleChangeInput = (event) => {
+    debounce(setInputValue, 500)(event.target.value);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>xin chao</h1>
+      <input
+        type="text"
+        // onChange={(event) => handleChangeInput(event)}
+        // value={inputValue}
+        value={inputHandler.value}
+        onChange={(e) => inputHandler.onChange(e.target.value)}
+      />
     </div>
   );
 }
