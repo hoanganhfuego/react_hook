@@ -18,6 +18,7 @@ function App() {
   };
   return (
     <div>
+      <h1>xin chao 0</h1>
       <h1>xin chao</h1>
       <h1>test 1</h1>
       <h1>test 2</h1>
